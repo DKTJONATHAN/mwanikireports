@@ -6,7 +6,6 @@ import articles from '../../../content/articles.json';
 export default function BreakingNewsTicker() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Get latest 3 news articles
   const breakingNews = articles
     .filter(post => post.category === 'News' || post.category === 'Breaking News')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())

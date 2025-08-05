@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ClientLayout from "./client-layout"; // Add this import
 
 export const metadata: Metadata = {
   title: {

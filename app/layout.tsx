@@ -1,6 +1,5 @@
 'use client';
 
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
@@ -17,77 +16,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-export const metadata: Metadata = {
-  title: {
-    default: "Jonathan Mwaniki News - Latest News & Insights in Kenya",
-    template: "%s | Jonathan Mwaniki News",
-  },
-  description: "Stay informed with breaking news, in-depth analysis, sports, entertainment, technology, and expert opinions from Kenya and beyond at Jonathan Mwaniki News.",
-  keywords: [
-    "Kenya news",
-    "breaking news",
-    "journalism",
-    "sports",
-    "entertainment",
-    "technology",
-    "analysis",
-    "Jonathan Mwaniki",
-    "Nairobi news",
-    "East Africa news",
-  ],
-  authors: [{ name: "Jonathan Mwaniki", url: "https://jonathanmwaniki.co.ke" }],
-  creator: "Jonathan Mwaniki",
-  publisher: "Jonathan Mwaniki News",
-  formatDetection: {
-    email: true,
-    address: false,
-    telephone: true,
-  },
-  openGraph: {
-    title: "Jonathan Mwaniki News - Latest News & Insights",
-    description: "Your trusted source for breaking news, in-depth analysis, sports, entertainment, technology, and expert opinions in Kenya.",
-    url: "https://jonathanmwaniki.co.ke",
-    siteName: "Jonathan Mwaniki News",
-    images: [
-      {
-        url: "https://jonathanmwaniki.co.ke/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Jonathan Mwaniki News Cover Image",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Jonathan Mwaniki News",
-    description: "Get the latest news, analysis, sports, tech, and expert opinions from Kenya.",
-    creator: "@maestropuns",
-    images: ["https://jonathanmwaniki.co.ke/og-image.jpg"],
-  },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-  manifest: "/site.webmanifest",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  alternates: {
-    canonical: "https://jonathanmwaniki.co.ke",
-  },
-};
 
 export default function RootLayout({
   children,
@@ -222,7 +150,7 @@ export default function RootLayout({
                     { href: "/", label: "Home", icon: "fas fa-home" },
                     { href: "/category/breaking-news", label: "Breaking", icon: "fas fa-bolt", color: "text-red-600" },
                     { href: "/category/politics", label: "Politics", icon: "fas fa-landmark" },
-                    { href: "/category/business", label: "Business", icon: "fas fa-chart-line" }, // Fixed syntax here
+                    { href: "/category/business", label: "Business", icon: "fas fa-chart-line" },
                     { href: "/category/sports", label: "Sports", icon: "fas fa-futbol" },
                     { href: "/category/entertainment", label: "Entertainment", icon: "fas fa-film" },
                     { href: "/category/tech", label: "Technology", icon: "fas fa-microchip" },
@@ -251,7 +179,7 @@ export default function RootLayout({
                   { href: "/", label: "Home", icon: "fas fa-home" },
                   { href: "/category/breaking-news", label: "Breaking", icon: "fas fa-bolt", color: "text-red-600 border-b-2 border-red-600" },
                   { href: "/category/politics", label: "Politics", icon: "fas fa-landmark" },
-                  { href: "/category/business", label: "Business", icon: "fas fa-chart-line" }, // Fixed syntax here
+                  { href: "/category/business", label: "Business", icon: "fas fa-chart-line" },
                   { href: "/category/sports", label: "Sports", icon: "fas fa-futbol" },
                   { href: "/category/entertainment", label: "Entertainment", icon: "fas fa-film" },
                   { href: "/category/tech", label: "Technology", icon: "fas fa-microchip" },

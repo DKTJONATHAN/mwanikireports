@@ -1,10 +1,9 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useState, useEffect } from 'react';
 
 const BreakingNewsTicker = dynamic(
-  () => import('./BreakingNewsTicker').then(mod => mod.default),
+  () => import('./BreakingNewsTicker'), // Correct path - same directory
   { 
     ssr: false,
     loading: () => (

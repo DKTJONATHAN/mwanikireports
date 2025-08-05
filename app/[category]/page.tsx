@@ -3,8 +3,16 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import articles from '../../content/articles.json';
+import type { NextPage } from 'next';
 
-export default function CategoryPage({ params }: { params: { category: string } }) {
+// Define the props type for the dynamic route
+interface CategoryPageProps {
+  params: {
+    category: string;
+  };
+}
+
+const CategoryPage: NextPage<CategoryPageProps> = ({ params }) => {
   const router = useRouter();
   const { category } = params;
 
@@ -78,4 +86,6 @@ export default function CategoryPage({ params }: { params: { category: string } 
       </nav>
     </div>
   );
-}
+};
+
+export default CategoryPage;

@@ -51,7 +51,7 @@ export default function Home() {
   };
 
   return (
-    <div className="font-sans min-h-screen bg-white">
+    <div className="font-sans min-h-screen bg-slate-50">
       {/* Hero Section with Featured Post */}
       {selectedCategory === 'All' && featuredPost && (
         <section className="mb-12">
@@ -104,7 +104,7 @@ export default function Home() {
                 </div>
                 <Link 
                   href={`/${featuredPost.category.toLowerCase().replace(' ', '-')}/${featuredPost.id}`}
-                  className="inline-flex items-center bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl group"
+                  className="inline-flex items-center bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl group"
                 >
                   Read Full Story
                   <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
@@ -119,7 +119,7 @@ export default function Home() {
       <section className="mb-8">
         <div className="bg-white rounded-xl shadow-md p-6">
           <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center">
-            <i className="fas fa-filter mr-2 text-red-600"></i>
+            <i className="fas fa-filter mr-2 text-blue-600"></i>
             Browse Categories
           </h2>
           <div className="overflow-x-auto">
@@ -130,7 +130,7 @@ export default function Home() {
                   onClick={() => setSelectedCategory(category.name)}
                   className={`inline-flex items-center px-4 py-2.5 rounded-lg text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
                     selectedCategory === category.name
-                      ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg'
+                      ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg'
                       : 'bg-slate-100 hover:bg-slate-200 text-slate-700 hover:shadow-md'
                   }`}
                 >
@@ -151,7 +151,7 @@ export default function Home() {
               <i className="fas fa-fire mr-3 text-red-500"></i>
               Trending Stories
             </h2>
-            <Link href="/trending" className="text-red-600 hover:text-red-700 font-medium flex items-center">
+            <Link href="/trending" className="text-blue-600 hover:text-blue-700 font-medium flex items-center">
               View All
               <i className="fas fa-arrow-right ml-2"></i>
             </Link>
@@ -177,7 +177,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="p-5">
-                  <h3 className="text-lg font-bold text-slate-900 mb-2 line-clamp-2 group-hover:text-red-600 transition-colors">
+                  <h3 className="text-lg font-bold text-slate-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
                     {post.title}
                   </h3>
                   <p className="text-slate-600 mb-4 text-sm line-clamp-2">
@@ -193,7 +193,7 @@ export default function Home() {
                     </span>
                     <Link 
                       href={`/${post.category.toLowerCase().replace(' ', '-')}/${post.id}`}
-                      className="text-red-600 hover:text-red-700 text-sm font-semibold flex items-center group"
+                      className="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center group"
                     >
                       Read More
                       <i className="fas fa-arrow-right ml-1 text-xs group-hover:translate-x-1 transition-transform"></i>
@@ -210,7 +210,7 @@ export default function Home() {
       <section className="mb-12">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-slate-900 flex items-center">
-            <i className="fas fa-newspaper mr-3 text-red-600"></i>
+            <i className="fas fa-newspaper mr-3 text-blue-600"></i>
             {selectedCategory === 'All' ? 'Latest News' : `${selectedCategory} News`}
           </h2>
           <div className="text-sm text-slate-500">
@@ -239,7 +239,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-5">
-                <h3 className="text-lg font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-red-600 transition-colors leading-tight">
+                <h3 className="text-lg font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors leading-tight">
                   {post.title}
                 </h3>
                 <p className="text-slate-600 mb-4 text-sm line-clamp-3 leading-relaxed">
@@ -256,7 +256,7 @@ export default function Home() {
                   </div>
                   <Link 
                     href={`/${post.category.toLowerCase().replace(' ', '-')}/${post.id}`}
-                    className="text-red-600 hover:text-red-700 text-sm font-semibold flex items-center group/link"
+                    className="text-blue-600 hover:text-blue-700 text-sm font-semibold flex items-center group/link"
                   >
                     Read More
                     <i className="fas fa-arrow-right ml-1.5 text-xs group-hover/link:translate-x-1 transition-transform"></i>
@@ -279,13 +279,13 @@ export default function Home() {
 
       {/* Enhanced Newsletter Subscription */}
       <section className="mb-8">
-        <div className="bg-gradient-to-r from-red-600 to-red-800 rounded-2xl p-8 text-white relative overflow-hidden">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="relative z-10 max-w-4xl mx-auto text-center">
             <div className="mb-6">
               <i className="fas fa-envelope text-4xl mb-4 opacity-80"></i>
               <h2 className="text-3xl font-bold mb-4">Never Miss a Story</h2>
-              <p className="text-red-100 text-lg leading-relaxed">
+              <p className="text-blue-100 text-lg leading-relaxed">
                 Join over 10,000 readers who get breaking news, in-depth analysis, and exclusive content delivered directly to their inbox.
               </p>
             </div>
@@ -298,11 +298,11 @@ export default function Home() {
                 />
                 <i className="fas fa-envelope absolute right-3 top-3.5 text-slate-400"></i>
               </div>
-              <button className="bg-white text-red-600 px-6 py-3 rounded-lg hover:bg-slate-50 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl whitespace-nowrap">
+              <button className="bg-white text-blue-600 px-6 py-3 rounded-lg hover:bg-slate-50 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl whitespace-nowrap">
                 Subscribe Now
               </button>
             </div>
-            <p className="text-red-200 text-xs mt-4">
+            <p className="text-blue-200 text-xs mt-4">
               <i className="fas fa-shield-alt mr-1"></i>
               We respect your privacy. Unsubscribe at any time.
             </p>
@@ -311,4 +311,4 @@ export default function Home() {
       </section>
     </div>
   );
-}7
+}

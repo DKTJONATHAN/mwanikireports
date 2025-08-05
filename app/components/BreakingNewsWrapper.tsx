@@ -1,38 +1,23 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
-import articles from '../../../content/articles.json'; // Same path as page.tsx
 
-export default function BreakingNewsTicker() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
-  // Get latest 3 news articles (same logic as before)
-  const breakingNews = articles
-    .filter(post => post.category === 'News' || post.category === 'Breaking News')
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
-
-  useEffect(() => {
-    if (breakingNews.length > 1) {
-      const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % breakingNews.length);
-      }, 3000);
-      return () => clearInterval(interval);
-    }
-  }, [breakingNews.length]);
-
-  if (breakingNews.length === 0) return null;
-
-  return (
-    <div className="bg-red-600 text-white py-2 px-4 text-sm font-medium">
-      <div className="container mx-auto flex items-center">
-        <span className="mr-3 font-bold">BREAKING:</span>
-        <div className="overflow-hidden whitespace-nowrap flex-1">
-          <div className="animate-marquee inline-block">
-            <span className="mx-4">{breakingNews[currentIndex].title}</span>
-          </div>
+const BreakingNewsTicker = dynamic(
+  () => import('./BreakingNewsTicker').then(mod => mod.default),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="bg-red-600 text-white py-2 px-4 text-sm font-medium">
+        <div className="container mx-auto flex items-center">
+          <span className="mr-3 font-bold">BREAKING:</span>
+          <div className="animate-pulse">Loading news...</div>
         </div>
       </div>
-    </div>
-  );
+    )
+  }
+);
+
+export default function BreakingNewsWrapper() {
+  return <BreakingNewsTicker />;
 }

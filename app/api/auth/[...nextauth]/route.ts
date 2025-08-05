@@ -13,8 +13,8 @@ export const authOptions = {
         const adminUsername = process.env.ADMIN_USERNAME;
         const adminPassword = process.env.ADMIN_PASSWORD;
         if (
-          credentials.username === adminUsername &&
-          credentials.password === adminPassword
+          credentials?.username === adminUsername &&
+          credentials?.password === adminPassword
         ) {
           return { id: '1', name: 'Admin', email: 'admin@jonathanmwaniki.co.ke' };
         }
@@ -28,4 +28,4 @@ export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 };
 
-export default NextAuth(authOptions);
+export const { handlers, auth, signIn, signOut } = NextAuth(authOptions);

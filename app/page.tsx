@@ -11,27 +11,28 @@ export default function Home() {
 
   // Filter and sort posts by date (latest first)
   const filteredPosts = selectedCategory === 'All'
-    ? articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    ? [...articles].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     : articles.filter(post => post.category === selectedCategory)
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   // Featured post (most recent)
-  const featuredPost = articles[0];
+  const featuredPost = filteredPosts[0];
 
   return (
-    <div className="font-sans min-h-screen bg-gray-50">
+    <div className="font-sans min-h-screen bg-gray-50 w-full max-w-none">
       {/* Featured Post Section */}
       {selectedCategory === 'All' && (
-        <section className="container mx-auto px-4 py-8">
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+        <section className="w-full px-0">
+          <div className="bg-white rounded-none shadow-lg overflow-hidden">
             <div className="md:flex">
               <div className="md:w-2/3">
                 <Image
                   src={featuredPost.image}
                   alt={featuredPost.title}
-                  width={800}
-                  height={450}
+                  width={1600}
+                  height={900}
                   className="w-full h-full object-cover"
+                  priority
                 />
               </div>
               <div className="p-6 md:w-1/3">
@@ -54,9 +55,9 @@ export default function Home() {
       )}
 
       {/* Category Filter */}
-      <section className="container mx-auto px-4 py-6">
-        <div className="flex overflow-x-auto pb-2 scrollbar-hide">
-          <div className="flex space-x-2">
+      <section className="w-full bg-white py-4 shadow-sm sticky top-0 z-10">
+        <div className="overflow-x-auto px-4">
+          <div className="flex space-x-2 w-max">
             {categories.map(category => (
               <button
                 key={category}
@@ -75,25 +76,25 @@ export default function Home() {
       </section>
 
       {/* Main Content Grid */}
-      <section className="container mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPosts.map(post => (
+      <section className="w-full px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0">
+          {filteredPosts.map((post, index) => (
             <div
               key={post.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+              className={`bg-white ${index < filteredPosts.length - 1 ? 'border-b sm:border-b-0 sm:border-r border-gray-200' : ''}`}
             >
-              <div className="relative h-48 w-full">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  className="object-cover"
-                />
-                <span className="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded">
-                  {post.category}
-                </span>
-              </div>
               <div className="p-4">
+                <div className="relative h-48 w-full mb-4">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <span className="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded">
+                    {post.category}
+                  </span>
+                </div>
                 <h2 className="text-xl font-bold text-gray-900 mb-2">{post.title}</h2>
                 <p className="text-gray-600 mb-4">{post.description}</p>
                 <div className="flex justify-between items-center">
@@ -118,10 +119,10 @@ export default function Home() {
       </section>
 
       {/* Newsletter Subscription */}
-      <section className="bg-gray-100 py-12 mt-8">
-        <div className="container mx-auto px-4 text-center">
+      <section className="w-full bg-gray-100 py-12 px-4">
+        <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Stay Updated</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto mb-6">
+          <p className="text-gray-600 mb-6">
             Subscribe to our newsletter for the latest news and updates delivered to your inbox.
           </p>
           <div className="flex max-w-md mx-auto">

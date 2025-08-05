@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/favicon-96x96.png",
+    shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
@@ -160,7 +160,7 @@ export default function RootLayout({
                   />
                 </Link>
                 <div className="ml-4 hidden sm:block">
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
+                  <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                     Mwaniki Reports
                   </h1>
                   <p className="text-xs text-slate-500 mt-0.5">Your Trusted News Source</p>

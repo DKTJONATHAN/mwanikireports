@@ -17,20 +17,21 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Jonathan Mwaniki News - Latest News & Gossip in Kenya",
+    default: "Jonathan Mwaniki News - Latest News & Insights in Kenya",
     template: "%s | Jonathan Mwaniki News",
   },
-  description: "Stay updated with breaking news, sports, entertainment, tech, opinions, and gossip from Kenya and beyond at Jonathan Mwaniki News.",
+  description: "Stay informed with breaking news, in-depth analysis, sports, entertainment, technology, and expert opinions from Kenya and beyond at Jonathan Mwaniki News.",
   keywords: [
     "Kenya news",
     "breaking news",
-    "gossip",
+    "journalism",
     "sports",
     "entertainment",
-    "tech",
-    "opinions",
+    "technology",
+    "analysis",
     "Jonathan Mwaniki",
     "Nairobi news",
+    "East Africa news",
   ],
   authors: [{ name: "Jonathan Mwaniki", url: "https://jonathanmwaniki.co.ke" }],
   creator: "Jonathan Mwaniki",
@@ -41,8 +42,8 @@ export const metadata: Metadata = {
     telephone: true,
   },
   openGraph: {
-    title: "Jonathan Mwaniki News - Latest News & Gossip",
-    description: "Your source for breaking news, sports, entertainment, tech, opinions, and gossip in Kenya.",
+    title: "Jonathan Mwaniki News - Latest News & Insights",
+    description: "Your trusted source for breaking news, in-depth analysis, sports, entertainment, technology, and expert opinions in Kenya.",
     url: "https://jonathanmwaniki.co.ke",
     siteName: "Jonathan Mwaniki News",
     images: [
@@ -59,7 +60,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Jonathan Mwaniki News",
-    description: "Get the latest news, gossip, sports, tech, and opinions from Kenya.",
+    description: "Get the latest news, analysis, sports, tech, and expert opinions from Kenya.",
     creator: "@maestropuns",
     images: ["https://jonathanmwaniki.co.ke/og-image.jpg"],
   },
@@ -102,78 +103,151 @@ export default function RootLayout({
         <link rel="icon" href="/icon?<generated>" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/apple-touch-icon?<generated>" type="image/png" sizes="180x180" />
       </Head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}>
-        {/* Breaking News Ticker */}
-        <div className="bg-red-600 text-white py-2 px-4 text-sm font-medium">
-          <div className="container mx-auto flex items-center">
-            <span className="mr-3 font-bold">BREAKING:</span>
-            <div className="overflow-hidden whitespace-nowrap">
-              <div className="animate-marquee inline-block">
-                <span className="mx-4">• Kenya ranked first in global human rights violations watchlist</span>
-                <span className="mx-4">• NACADA raises legal drinking age to 21</span>
-                <span className="mx-4">• CHAN 2024 kicks off this weekend in Nairobi</span>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 text-slate-900`}>
+        
+        {/* Top Bar with Date, Weather, and Social Links */}
+        <div className="hidden md:block bg-slate-900 text-slate-300 py-2 px-4 text-sm border-b border-slate-800">
+          <div className="container mx-auto flex justify-between items-center">
+            <div className="flex items-center space-x-6">
+              <span className="flex items-center">
+                <i className="far fa-calendar-alt mr-2"></i>
+                {new Date().toLocaleDateString('en-US', { 
+                  weekday: 'long', 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}
+              </span>
+              <span className="flex items-center">
+                <i className="fas fa-thermometer-half mr-2"></i>
+                Nairobi 24°C
+              </span>
+            </div>
+            <div className="flex items-center space-x-4">
+              <span className="text-xs text-slate-400">Follow us:</span>
+              <div className="flex space-x-3">
+                <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors">
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" className="text-slate-400 hover:text-blue-400 transition-colors">
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a href="#" className="text-slate-400 hover:text-red-400 transition-colors">
+                  <i className="fab fa-youtube"></i>
+                </a>
+                <a href="#" className="text-slate-400 hover:text-pink-400 transition-colors">
+                  <i className="fab fa-instagram"></i>
+                </a>
               </div>
             </div>
           </div>
         </div>
 
         {/* Main Header */}
-        <header className="sticky top-0 z-50 bg-white shadow-md">
-          <div className="container mx-auto px-4 py-3">
+        <header className="sticky top-0 z-50 bg-white shadow-lg border-b border-slate-200">
+          <div className="container mx-auto px-4 py-4">
             <div className="flex justify-between items-center">
-              <div className="flex items-center space-x-4">
-                <Link href="/" className="flex items-center">
+              {/* Logo */}
+              <div className="flex items-center">
+                <Link href="/" className="flex items-center group">
                   <Image
                     src="/Jonathan-Mwaniki-logo.png"
                     alt="Jonathan Mwaniki News Logo"
-                    width={160}
-                    height={50}
-                    className="h-10 w-auto"
+                    width={180}
+                    height={55}
+                    className="h-12 w-auto transition-opacity group-hover:opacity-80"
+                    priority
                   />
                 </Link>
               </div>
               
-              <div className="hidden md:flex items-center space-x-6">
+              {/* Desktop Actions */}
+              <div className="hidden lg:flex items-center space-x-6">
                 <div className="relative">
                   <input
                     type="text"
-                    placeholder="Search news..."
-                    className="pl-10 pr-4 py-2 border rounded-full text-sm w-64 focus:outline-none focus:ring-2 focus:ring-red-500"
+                    placeholder="Search news, topics, or authors..."
+                    className="pl-12 pr-4 py-3 border-2 border-slate-200 rounded-full text-sm w-80 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   />
-                  <i className="fas fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                  <i className="fas fa-search absolute left-4 top-3.5 text-slate-400"></i>
                 </div>
-                <button className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition font-medium">
-                  Subscribe
+                <div className="flex items-center space-x-3">
+                  <button className="p-2 text-slate-600 hover:text-blue-600 transition-colors">
+                    <i className="fas fa-bell text-lg"></i>
+                  </button>
+                  <button className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-full hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium shadow-md hover:shadow-lg">
+                    Subscribe
+                  </button>
+                </div>
+              </div>
+
+              {/* Mobile Menu Button */}
+              <div className="lg:hidden flex items-center space-x-3">
+                <button className="p-2 text-slate-600 hover:text-blue-600 transition-colors">
+                  <i className="fas fa-search text-lg"></i>
+                </button>
+                <button className="p-2 text-slate-600 hover:text-blue-600 transition-colors">
+                  <i className="fas fa-bars text-lg"></i>
                 </button>
               </div>
             </div>
             
-            {/* Navigation */}
-            <nav className="mt-4">
-              <ul className="flex space-x-6 text-sm font-medium overflow-x-auto whitespace-nowrap">
+            {/* Desktop Navigation */}
+            <nav className="hidden md:block mt-4 pt-4 border-t border-slate-100">
+              <ul className="flex space-x-8 text-sm font-medium">
                 <li>
-                  <Link href="/" className="text-gray-700 hover:text-red-600 pb-2">Home</Link>
+                  <Link href="/" className="flex items-center text-slate-700 hover:text-blue-600 pb-2 transition-colors">
+                    <i className="fas fa-home mr-2"></i>
+                    Home
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/category/news" className="text-red-600 border-b-2 border-red-600 pb-2">News</Link>
+                  <Link href="/category/breaking-news" className="flex items-center text-red-600 border-b-2 border-red-600 pb-2">
+                    <i className="fas fa-bolt mr-2"></i>
+                    Breaking
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/category/breaking-news" className="text-gray-700 hover:text-red-600 pb-2">Breaking</Link>
+                  <Link href="/category/politics" className="flex items-center text-slate-700 hover:text-blue-600 pb-2 transition-colors">
+                    <i className="fas fa-landmark mr-2"></i>
+                    Politics
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/category/sports" className="text-gray-700 hover:text-red-600 pb-2">Sports</Link>
+                  <Link href="/category/business" className="flex items-center text-slate-700 hover:text-blue-600 pb-2 transition-colors">
+                    <i className="fas fa-chart-line mr-2"></i>
+                    Business
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/category/entertainment" className="text-gray-700 hover:text-red-600 pb-2">Entertainment</Link>
+                  <Link href="/category/sports" className="flex items-center text-slate-700 hover:text-blue-600 pb-2 transition-colors">
+                    <i className="fas fa-futbol mr-2"></i>
+                    Sports
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/category/tech" className="text-gray-700 hover:text-red-600 pb-2">Tech</Link>
+                  <Link href="/category/entertainment" className="flex items-center text-slate-700 hover:text-blue-600 pb-2 transition-colors">
+                    <i className="fas fa-film mr-2"></i>
+                    Entertainment
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/category/opinions" className="text-gray-700 hover:text-red-600 pb-2">Opinions</Link>
+                  <Link href="/category/tech" className="flex items-center text-slate-700 hover:text-blue-600 pb-2 transition-colors">
+                    <i className="fas fa-microchip mr-2"></i>
+                    Technology
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/category/gossip" className="text-gray-700 hover:text-red-600 pb-2">Gossip</Link>
+                  <Link href="/category/lifestyle" className="flex items-center text-slate-700 hover:text-blue-600 pb-2 transition-colors">
+                    <i className="fas fa-heart mr-2"></i>
+                    Lifestyle
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/category/opinions" className="flex items-center text-slate-700 hover:text-blue-600 pb-2 transition-colors">
+                    <i className="fas fa-comment-alt mr-2"></i>
+                    Opinion
+                  </Link>
                 </li>
               </ul>
             </nav>
@@ -181,95 +255,142 @@ export default function RootLayout({
         </header>
 
         {/* Main Content */}
-        <main className="container mx-auto px-4 py-6 min-h-screen">
+        <main className="container mx-auto px-4 py-8 min-h-screen mb-20 md:mb-0">
           {children}
         </main>
 
-        {/* Footer */}
-        <footer className="bg-gray-800 text-white py-12">
+        {/* Enhanced Footer */}
+        <footer className="bg-slate-900 text-slate-300 py-16">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div>
-                <Link href="/" className="flex items-center mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+              {/* Brand Section */}
+              <div className="lg:col-span-1">
+                <Link href="/" className="flex items-center mb-6">
                   <Image
                     src="/Jonathan-Mwaniki-logo.png"
                     alt="Jonathan Mwaniki News Logo"
-                    width={160}
-                    height={50}
-                    className="h-10 w-auto"
+                    width={180}
+                    height={55}
+                    className="h-12 w-auto brightness-0 invert"
                   />
                 </Link>
-                <p className="text-gray-400 mb-4">Your trusted source for the latest news and updates from Kenya and beyond.</p>
+                <p className="text-slate-400 mb-6 leading-relaxed">
+                  Your trusted source for comprehensive news coverage, in-depth analysis, and expert insights from Kenya and the East African region.
+                </p>
                 <div className="flex space-x-4">
-                  <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-facebook-f"></i></a>
-                  <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-twitter"></i></a>
-                  <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-instagram"></i></a>
-                  <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-youtube"></i></a>
+                  <a href="#" className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 transition-all">
+                    <i className="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="#" className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-400 transition-all">
+                    <i className="fab fa-twitter"></i>
+                  </a>
+                  <a href="#" className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-pink-600 transition-all">
+                    <i className="fab fa-instagram"></i>
+                  </a>
+                  <a href="#" className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-600 transition-all">
+                    <i className="fab fa-youtube"></i>
+                  </a>
                 </div>
               </div>
+
+              {/* Categories */}
               <div>
-                <h4 className="font-bold text-lg mb-4">Categories</h4>
-                <ul className="space-y-2">
-                  <li><Link href="/category/news" className="text-gray-400 hover:text-white">News</Link></li>
-                  <li><Link href="/category/breaking-news" className="text-gray-400 hover:text-white">Breaking News</Link></li>
-                  <li><Link href="/category/sports" className="text-gray-400 hover:text-white">Sports</Link></li>
-                  <li><Link href="/category/entertainment" className="text-gray-400 hover:text-white">Entertainment</Link></li>
-                  <li><Link href="/category/tech" className="text-gray-400 hover:text-white">Technology</Link></li>
+                <h4 className="font-bold text-lg mb-6 text-white">News Categories</h4>
+                <ul className="space-y-3">
+                  <li><Link href="/category/breaking-news" className="text-slate-400 hover:text-white transition-colors flex items-center"><i className="fas fa-chevron-right mr-2 text-xs"></i>Breaking News</Link></li>
+                  <li><Link href="/category/politics" className="text-slate-400 hover:text-white transition-colors flex items-center"><i className="fas fa-chevron-right mr-2 text-xs"></i>Politics</Link></li>
+                  <li><Link href="/category/business" className="text-slate-400 hover:text-white transition-colors flex items-center"><i className="fas fa-chevron-right mr-2 text-xs"></i>Business</Link></li>
+                  <li><Link href="/category/sports" className="text-slate-400 hover:text-white transition-colors flex items-center"><i className="fas fa-chevron-right mr-2 text-xs"></i>Sports</Link></li>
+                  <li><Link href="/category/entertainment" className="text-slate-400 hover:text-white transition-colors flex items-center"><i className="fas fa-chevron-right mr-2 text-xs"></i>Entertainment</Link></li>
+                  <li><Link href="/category/technology" className="text-slate-400 hover:text-white transition-colors flex items-center"><i className="fas fa-chevron-right mr-2 text-xs"></i>Technology</Link></li>
                 </ul>
               </div>
+
+              {/* Quick Links */}
               <div>
-                <h4 className="font-bold text-lg mb-4">Company</h4>
-                <ul className="space-y-2">
-                  <li><Link href="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
-                  <li><Link href="/contact" className="text-gray-400 hover:text-white">Contact</Link></li>
-                  <li><Link href="/advertise" className="text-gray-400 hover:text-white">Advertise</Link></li>
-                  <li><Link href="/careers" className="text-gray-400 hover:text-white">Careers</Link></li>
-                  <li><Link href="/privacy" className="text-gray-400 hover:text-white">Privacy Policy</Link></li>
+                <h4 className="font-bold text-lg mb-6 text-white">Quick Links</h4>
+                <ul className="space-y-3">
+                  <li><Link href="/about" className="text-slate-400 hover:text-white transition-colors flex items-center"><i className="fas fa-chevron-right mr-2 text-xs"></i>About Us</Link></li>
+                  <li><Link href="/contact" className="text-slate-400 hover:text-white transition-colors flex items-center"><i className="fas fa-chevron-right mr-2 text-xs"></i>Contact Us</Link></li>
+                  <li><Link href="/advertise" className="text-slate-400 hover:text-white transition-colors flex items-center"><i className="fas fa-chevron-right mr-2 text-xs"></i>Advertise</Link></li>
+                  <li><Link href="/careers" className="text-slate-400 hover:text-white transition-colors flex items-center"><i className="fas fa-chevron-right mr-2 text-xs"></i>Careers</Link></li>
+                  <li><Link href="/privacy" className="text-slate-400 hover:text-white transition-colors flex items-center"><i className="fas fa-chevron-right mr-2 text-xs"></i>Privacy Policy</Link></li>
+                  <li><Link href="/terms" className="text-slate-400 hover:text-white transition-colors flex items-center"><i className="fas fa-chevron-right mr-2 text-xs"></i>Terms of Service</Link></li>
                 </ul>
               </div>
+
+              {/* Newsletter */}
               <div>
-                <h4 className="font-bold text-lg mb-4">Newsletter</h4>
-                <p className="text-gray-400 mb-4">Subscribe to our newsletter for daily news updates.</p>
-                <form className="flex">
-                  <input
-                    type="email"
-                    placeholder="Your email"
-                    className="px-3 py-2 bg-gray-700 text-white rounded-l-md w-full focus:outline-none focus:ring-2 focus:ring-red-500"
-                    required
-                  />
+                <h4 className="font-bold text-lg mb-6 text-white">Stay Updated</h4>
+                <p className="text-slate-400 mb-6">Subscribe to our newsletter for breaking news alerts and daily updates.</p>
+                <form className="space-y-4">
+                  <div className="relative">
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                      className="w-full px-4 py-3 bg-slate-800 text-white rounded-lg border border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      required
+                    />
+                    <i className="fas fa-envelope absolute right-3 top-3.5 text-slate-400"></i>
+                  </div>
                   <button
                     type="submit"
-                    className="bg-red-600 px-4 py-2 rounded-r-md hover:bg-red-700 font-medium"
+                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium shadow-lg"
                   >
-                    Subscribe
+                    Subscribe Now
                   </button>
                 </form>
               </div>
             </div>
-            <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-              <p>© {new Date().getFullYear()} Jonathan Mwaniki News. All rights reserved.</p>
+            
+            {/* Footer Bottom */}
+            <div className="border-t border-slate-800 mt-12 pt-8">
+              <div className="flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm">
+                <p>© {new Date().getFullYear()} Jonathan Mwaniki News. All rights reserved.</p>
+                <div className="flex items-center space-x-6 mt-4 md:mt-0">
+                  <span className="flex items-center">
+                    <i className="fas fa-shield-alt mr-2"></i>
+                    Verified Publisher
+                  </span>
+                  <span className="flex items-center">
+                    <i className="fas fa-award mr-2"></i>
+                    Award-Winning Journalism
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </footer>
 
-        {/* Mobile Bottom Navigation */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg md:hidden flex justify-around py-3 z-50 border-t border-gray-200">
-          <Link href="/" className="flex flex-col items-center text-gray-700 hover:text-red-600">
-            <i className="fas fa-home text-lg"></i>
-            <span className="text-xs mt-1">Home</span>
-          </Link>
-          <Link href="/categories" className="flex flex-col items-center text-gray-700 hover:text-red-600">
-            <i className="fas fa-th-large text-lg"></i>
-            <span className="text-xs mt-1">Categories</span>
-          </Link>
-          <Link href="/search" className="flex flex-col items-center text-gray-700 hover:text-red-600">
-            <i className="fas fa-search text-lg"></i>
-            <span className="text-xs mt-1">Search</span>
-          </Link>
-          <Link href="/account" className="flex flex-col items-center text-gray-700 hover:text-red-600">
-            <i className="fas fa-user text-lg"></i>
-            <span className="text-xs mt-1">Account</span>
-          </Link>
+        {/* Enhanced Mobile Bottom Navigation - Icons Only */}
+        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-2xl md:hidden z-50 border-t border-slate-200">
+          <div className="grid grid-cols-5 py-2">
+            <Link href="/" className="flex flex-col items-center justify-center py-2 text-slate-600 hover:text-blue-600 transition-colors">
+              <div className="w-6 h-6 flex items-center justify-center">
+                <i className="fas fa-home text-lg"></i>
+              </div>
+            </Link>
+            <Link href="/breaking" className="flex flex-col items-center justify-center py-2 text-slate-600 hover:text-red-600 transition-colors">
+              <div className="w-6 h-6 flex items-center justify-center">
+                <i className="fas fa-bolt text-lg"></i>
+              </div>
+            </Link>
+            <Link href="/categories" className="flex flex-col items-center justify-center py-2 text-slate-600 hover:text-blue-600 transition-colors">
+              <div className="w-6 h-6 flex items-center justify-center">
+                <i className="fas fa-th-large text-lg"></i>
+              </div>
+            </Link>
+            <Link href="/bookmarks" className="flex flex-col items-center justify-center py-2 text-slate-600 hover:text-green-600 transition-colors">
+              <div className="w-6 h-6 flex items-center justify-center">
+                <i className="fas fa-bookmark text-lg"></i>
+              </div>
+            </Link>
+            <Link href="/profile" className="flex flex-col items-center justify-center py-2 text-slate-600 hover:text-purple-600 transition-colors">
+              <div className="w-6 h-6 flex items-center justify-center">
+                <i className="fas fa-user text-lg"></i>
+              </div>
+            </Link>
+          </div>
         </div>
       </body>
     </html>

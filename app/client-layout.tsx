@@ -24,12 +24,16 @@ export default function ClientLayout({
 }>) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Log to confirm bottom navigation rendering
+  console.log("Rendering bottom navigation");
+
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* Use public Font Awesome CDN */}
         <script
-          src="https://kit.fontawesome.com/4a5d7e6f8b.js"
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
           crossOrigin="anonymous"
           defer
         ></script>
@@ -202,7 +206,7 @@ export default function ClientLayout({
         </header>
 
         {/* Main Content */}
-        <main className="container mx-auto px-4 py-8 min-h-screen">
+        <main className="container mx-auto px-4 py-8 min-h-screen mb-16 md:mb-0">
           {children}
         </main>
 
@@ -406,23 +410,27 @@ export default function ClientLayout({
         </footer>
 
         {/* Enhanced Mobile Bottom Navigation */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-2xl md:hidden z-50 border-t border-slate-200">
+        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-2xl md:hidden z-[1000] border-t border-slate-200">
           <div className="grid grid-cols-5 py-3">
             {[
-              { href: "/", icon: "fas fa-home", color: "hover:text-blue-600" },
-              { href: "/breaking", icon: "fas fa-bolt", color: "hover:text-red-600" },
-              { href: "/categories", icon: "fas fa-th-large", color: "hover:text-blue-600" },
-              { href: "/bookmarks", icon: "fas fa-bookmark", color: "hover:text-green-600" },
-              { href: "/profile", icon: "fas fa-user", color: "hover:text-purple-600" },
+              { href: "/", icon: "fas fa-home", color: "hover:text-blue-600", label: "Home" },
+              { href: "/breaking", icon: "fas fa-bolt", color: "hover:text-red-600", label: "Breaking" },
+              { href: "/categories", icon: "fas fa-th-large", color: "hover:text-blue-600", label: "Categories" },
+              { href: "/bookmarks", icon: "fas fa-bookmark", color: "hover:text-green-600", label: "Bookmarks" },
+              { href: "/profile", icon: "fas fa-user", color: "hover:text-purple-600", label: "Profile" },
             ].map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className={`flex flex-col items-center justify-center py-2 text-slate-600 ${item.color} transition-colors`}
-                aria-label={item.href.split("/")[1] || "Home"}
+                aria-label={item.label}
               >
-                <div className="w-6 h-6 flex items-center justify-center">
+                <div className="w-6 h-6 flex items-center justify-center relative">
                   <i className={`${item.icon} text-lg`}></i>
+                  {/* Always visible text label on mobile */}
+                  <span className="text-xs font-medium mt-1 block md:hidden">
+                    {item.label}
+                  </span>
                 </div>
               </Link>
             ))}

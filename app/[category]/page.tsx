@@ -7,14 +7,12 @@ import type { NextPage } from 'next';
 
 // Define the props type for the dynamic route
 interface CategoryPageProps {
-  params: {
-    category: string;
-  };
+  params: Promise<{ category: string }>;
 }
 
-const CategoryPage: NextPage<CategoryPageProps> = ({ params }) => {
+const CategoryPage: NextPage<CategoryPageProps> = async ({ params }) => {
   const router = useRouter();
-  const { category } = params;
+  const { category } = await params; // Unwrap the Promise
 
   // Decode category and ensure it matches your categories
   const validCategories = ['News', 'Breaking News', 'Sports', 'Entertainment', 'Tech', 'Opinions'];

@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 
 const BreakingNewsTicker = dynamic(
-  () => import('./BreakingNewsTicker'), // Correct path - same directory
+  () => import('./BreakingNewsTicker'),
   { 
     ssr: false,
     loading: () => (

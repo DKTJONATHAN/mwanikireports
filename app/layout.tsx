@@ -4,6 +4,7 @@ import "./globals.css";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import BreakingNewsTicker from "./components/BreakingNewsTicker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,10 +18,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Jonathan Mwaniki News - Latest News & Gossip in Kenya",
-    template: "%s | Jonathan Mwaniki News",
+    default: "The Mwaniki Report - Latest News & Gossip in Kenya",
+    template: "%s | The Mwaniki Report",
   },
-  description: "Stay updated with breaking news, sports, entertainment, tech, opinions, and gossip from Kenya and beyond at Jonathan Mwaniki News.",
+  description: "Stay updated with breaking news, sports, entertainment, tech, opinions, and gossip from Kenya and beyond at The Mwaniki Report.",
   keywords: [
     "Kenya news",
     "breaking news",
@@ -29,28 +30,28 @@ export const metadata: Metadata = {
     "entertainment",
     "tech",
     "opinions",
-    "Jonathan Mwaniki",
+    "The Mwaniki Report",
     "Nairobi news",
   ],
   authors: [{ name: "Jonathan Mwaniki", url: "https://jonathanmwaniki.co.ke" }],
   creator: "Jonathan Mwaniki",
-  publisher: "Jonathan Mwaniki News",
+  publisher: "The Mwaniki Report",
   formatDetection: {
     email: true,
     address: false,
     telephone: true,
   },
   openGraph: {
-    title: "Jonathan Mwaniki News - Latest News & Gossip",
+    title: "The Mwaniki Report - Latest News & Gossip",
     description: "Your source for breaking news, sports, entertainment, tech, opinions, and gossip in Kenya.",
     url: "https://jonathanmwaniki.co.ke",
-    siteName: "Jonathan Mwaniki News",
+    siteName: "The Mwaniki Report",
     images: [
       {
         url: "https://jonathanmwaniki.co.ke/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Jonathan Mwaniki News Cover Image",
+        alt: "The Mwaniki Report Cover Image",
       },
     ],
     locale: "en_US",
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jonathan Mwaniki News",
+    title: "The Mwaniki Report",
     description: "Get the latest news, gossip, sports, tech, and opinions from Kenya.",
     creator: "@maestropuns",
     images: ["https://jonathanmwaniki.co.ke/og-image.jpg"],
@@ -99,23 +100,10 @@ export default function RootLayout({
           defer
         ></script>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon?<generated>" type="image/png" sizes="32x32" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon?<generated>" type="image/png" sizes="180x180" />
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}>
         {/* Breaking News Ticker */}
-        <div className="bg-red-600 text-white py-2 px-4 text-sm font-medium">
-          <div className="container mx-auto flex items-center">
-            <span className="mr-3 font-bold">BREAKING:</span>
-            <div className="overflow-hidden whitespace-nowrap">
-              <div className="animate-marquee inline-block">
-                <span className="mx-4">• Kenya ranked first in global human rights violations watchlist</span>
-                <span className="mx-4">• NACADA raises legal drinking age to 21</span>
-                <span className="mx-4">• CHAN 2024 kicks off this weekend in Nairobi</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <BreakingNewsTicker />
 
         {/* Main Header */}
         <header className="sticky top-0 z-50 bg-white shadow-md">
@@ -123,13 +111,7 @@ export default function RootLayout({
             <div className="flex justify-between items-center">
               <div className="flex items-center space-x-4">
                 <Link href="/" className="flex items-center">
-                  <Image
-                    src="/Jonathan-Mwaniki-logo.png"
-                    alt="Jonathan Mwaniki News Logo"
-                    width={160}
-                    height={50}
-                    className="h-10 w-auto"
-                  />
+                  <h1 className="text-2xl font-bold text-red-600">The Mwaniki Report</h1>
                 </Link>
               </div>
               
@@ -149,8 +131,8 @@ export default function RootLayout({
             </div>
             
             {/* Navigation */}
-            <nav className="mt-4">
-              <ul className="flex space-x-6 text-sm font-medium overflow-x-auto whitespace-nowrap">
+            <nav className="mt-4 hidden md:block">
+              <ul className="flex space-x-6 text-sm font-medium">
                 <li>
                   <Link href="/" className="text-gray-700 hover:text-red-600 pb-2">Home</Link>
                 </li>
@@ -172,9 +154,6 @@ export default function RootLayout({
                 <li>
                   <Link href="/category/opinions" className="text-gray-700 hover:text-red-600 pb-2">Opinions</Link>
                 </li>
-                <li>
-                  <Link href="/category/gossip" className="text-gray-700 hover:text-red-600 pb-2">Gossip</Link>
-                </li>
               </ul>
             </nav>
           </div>
@@ -191,13 +170,7 @@ export default function RootLayout({
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div>
                 <Link href="/" className="flex items-center mb-4">
-                  <Image
-                    src="/Jonathan-Mwaniki-logo.png"
-                    alt="Jonathan Mwaniki News Logo"
-                    width={160}
-                    height={50}
-                    className="h-10 w-auto"
-                  />
+                  <h1 className="text-2xl font-bold text-red-600">The Mwaniki Report</h1>
                 </Link>
                 <p className="text-gray-400 mb-4">Your trusted source for the latest news and updates from Kenya and beyond.</p>
                 <div className="flex space-x-4">
@@ -247,30 +220,50 @@ export default function RootLayout({
               </div>
             </div>
             <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-              <p>© {new Date().getFullYear()} Jonathan Mwaniki News. All rights reserved.</p>
+              <p>© {new Date().getFullYear()} The Mwaniki Report. All rights reserved.</p>
             </div>
           </div>
         </footer>
 
-        {/* Mobile Bottom Navigation */}
+        {/* Mobile Bottom Navigation (Icon Only) */}
         <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg md:hidden flex justify-around py-3 z-50 border-t border-gray-200">
           <Link href="/" className="flex flex-col items-center text-gray-700 hover:text-red-600">
-            <i className="fas fa-home text-lg"></i>
-            <span className="text-xs mt-1">Home</span>
-          </Link>
-          <Link href="/categories" className="flex flex-col items-center text-gray-700 hover:text-red-600">
-            <i className="fas fa-th-large text-lg"></i>
-            <span className="text-xs mt-1">Categories</span>
+            <i className="fas fa-home text-xl"></i>
           </Link>
           <Link href="/search" className="flex flex-col items-center text-gray-700 hover:text-red-600">
-            <i className="fas fa-search text-lg"></i>
-            <span className="text-xs mt-1">Search</span>
+            <i className="fas fa-search text-xl"></i>
           </Link>
-          <Link href="/account" className="flex flex-col items-center text-gray-700 hover:text-red-600">
-            <i className="fas fa-user text-lg"></i>
-            <span className="text-xs mt-1">Account</span>
-          </Link>
+          {/* Hamburger Menu for Categories */}
+          <div className="relative group">
+            <button className="flex flex-col items-center text-gray-700 hover:text-red-600">
+              <i className="fas fa-bars text-xl"></i>
+            </button>
+            {/* Category Dropdown */}
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block">
+              <Link href="/category/news" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">News</Link>
+              <Link href="/category/breaking-news" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Breaking</Link>
+              <Link href="/category/sports" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sports</Link>
+              <Link href="/category/entertainment" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Entertainment</Link>
+              <Link href="/category/tech" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Tech</Link>
+              <Link href="/category/opinions" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Opinions</Link>
+            </div>
+          </div>
         </div>
+
+        {/* Add this CSS for smooth dropdown animation */}
+        <style jsx>{`
+          .group-hover .hidden {
+            display: none;
+          }
+          .group:hover .group-hover\:block {
+            display: block;
+            animation: fadeIn 0.2s ease-in-out;
+          }
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        `}</style>
       </body>
     </html>
   );

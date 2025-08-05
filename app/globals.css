@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ffffff; /* white */
+  --foreground: #171717; /* gray-900 */
+  --card-bg: #ffffff; /* white for cards, nav, etc. */
+  --header-bg: #ffffff; /* white for header */
+  --footer-bg: #0f172a; /* slate-900 for footer */
+  --nav-bg: #ffffff; /* white for bottom navigation */
+  --text-secondary: #4b5563; /* slate-600 */
+  --text-tertiary: #6b7280; /* slate-500 */
+  --border: #e2e8f0; /* slate-200 */
+  --border-dark: #1e293b; /* slate-800 */
 }
 
 @theme inline {
@@ -14,8 +22,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0a0a0a; /* dark gray */
+    --foreground: #ededed; /* light gray */
+    --card-bg: #1e293b; /* slate-800 for cards, nav, etc. */
+    --header-bg: #1e293b; /* slate-800 for header */
+    --footer-bg: #111827; /* slate-950 for footer */
+    --nav-bg: #1e293b; /* slate-800 for bottom navigation */
+    --text-secondary: #9ca3af; /* slate-400 */
+    --text-tertiary: #9ca3af; /* slate-400 */
+    --border: #374151; /* slate-700 */
+    --border-dark: #4b5563; /* slate-600 */
   }
 }
 
@@ -23,4 +39,105 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Override Tailwind classes for dark mode compatibility */
+.bg-white {
+  background-color: var(--card-bg);
+}
+
+.bg-slate-50 {
+  background-color: var(--background);
+}
+
+.bg-slate-900 {
+  background-color: var(--footer-bg);
+}
+
+.bg-slate-100 {
+  background-color: var(--card-bg);
+}
+
+.bg-slate-800 {
+  background-color: var(--card-bg);
+}
+
+.text-slate-900 {
+  color: var(--foreground);
+}
+
+.text-slate-600 {
+  color: var(--text-secondary);
+}
+
+.text-slate-500 {
+  color: var(--text-tertiary);
+}
+
+.text-slate-400 {
+  color: var(--text-tertiary);
+}
+
+.border-slate-200 {
+  border-color: var(--border);
+}
+
+.border-slate-800 {
+  border-color: var(--border-dark);
+}
+
+header {
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+footer {
+  background-color: var(--footer-bg);
+}
+
+main {
+  background-color: var(--background);
+}
+
+/* Bottom navigation */
+.fixed.bottom-0 {
+  background-color: var(--nav-bg);
+  border-top: 1px solid var(--border);
+}
+
+/* Card shadows */
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.hover\:shadow-xl:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Ensure Tailwind utilities work */
+@layer utilities {
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom styles for specific components */
+.bg-gradient-to-r.from-blue-600.to-blue-700 {
+  background-image: linear-gradient(to right, #2563eb, #1e40af);
+}
+
+.bg-gradient-to-r.from-blue-700.to-blue-800 {
+  background-image: linear-gradient(to right, #1e40af, #1e3a8a);
+}
+
+.text-transparent {
+  color: transparent;
 }

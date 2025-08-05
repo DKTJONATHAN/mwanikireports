@@ -56,7 +56,6 @@ export const metadata: Metadata = {
 };
 
 // Client Components
-import BreakingNewsWrapper from './components/BreakingNewsWrapper';
 import MobileNav from './components/MobileNav';
 
 export default function RootLayout({
@@ -75,9 +74,6 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}>
-        {/* Breaking News Ticker */}
-        <BreakingNewsWrapper />
-
         {/* Header (server-rendered) */}
         <header className="sticky top-0 z-50 bg-white shadow-md">
           <div className="container mx-auto px-4 py-3">

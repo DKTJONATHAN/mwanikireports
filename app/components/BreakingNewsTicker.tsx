@@ -1,16 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import articles from '../../../content/articles.json';
+import articles from '../../../content/articles.json'; // Path from components/ to content/
 
 export default function BreakingNewsTicker() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Get latest 3 breaking news articles
   const breakingNews = articles
     .filter(post => post.category === 'News' || post.category === 'Breaking News')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 3);
 
+  // Auto-rotate news every 3 seconds
   useEffect(() => {
     if (breakingNews.length > 1) {
       const interval = setInterval(() => {
@@ -20,6 +22,7 @@ export default function BreakingNewsTicker() {
     }
   }, [breakingNews.length]);
 
+  // Don't render if no news
   if (breakingNews.length === 0) return null;
 
   return (

@@ -16,8 +16,9 @@ export default function Home() {
   return (
     <div className="font-sans min-h-screen p-8 pb-20 sm:p-20 bg-gray-100 dark:bg-gray-900">
       {/* Header */}
-      <header className="flex justify-center mb-8">
-        <h1 className="text-3xl font-bold text-foreground">Jonathan Mwaniki News</h1>
+      <header className="flex flex-col items-center mb-8">
+        <h1 className="text-3xl font-bold text-foreground">Jonathan Mwaniki Reports</h1>
+        <p className="text-lg text-gray-600 dark:text-gray-300 mt-2">Your Source for Breaking News and Gossip in Kenya</p>
       </header>
 
       {/* Category Filter */}
@@ -56,8 +57,13 @@ export default function Home() {
               <h2 className="text-xl font-semibold text-foreground mt-1">{post.title}</h2>
               <p className="text-gray-600 dark:text-gray-300 mt-2">{post.description}</p>
               <div className="mt-4 flex gap-2">
-                {/* Placeholder for social sharing */}
-                <button className="text-sm text-gray-500 hover:text-foreground">Share</button>
+                {/* AddThis Social Sharing */}
+                <div
+                  className="addthis_inline_share_toolbox"
+                  data-url={`https://jonathanmwaniki.co.ke/${post.category.toLowerCase().replace(' ', '-')}/${post.id}`}
+                  data-title={post.title}
+                  data-description={post.description}
+                ></div>
               </div>
             </div>
           </div>
@@ -79,6 +85,13 @@ export default function Home() {
           <span className="text-xs">Categories</span>
         </a>
       </nav>
+
+      {/* AddThis Script */}
+      <script
+        type="text/javascript"
+        src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-66f3f2f0e6d9c1b6"
+        async
+      ></script>
     </div>
   );
 }

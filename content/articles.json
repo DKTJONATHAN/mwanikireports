@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Sample News Article",
+    "description": "This is a sample news article for testing.",
+    "image": "https://via.placeholder.com/300x200",
+    "category": "News",
+    "date": "2025-08-05T12:00:00Z"
+  },
+  {
+    "id": 2,
+    "title": "Breaking News: Major Event",
+    "description": "A major event just happened in Nairobi.",
+    "image": "https://via.placeholder.com/300x200",
+    "category": "Breaking News",
+    "date": "2025-08-05T11:00:00Z"
+  },
+  {
+    "id": 3,
+    "title": "Sports Update: Kenya Wins Gold",
+    "description": "Kenya secures gold in athletics.",
+    "image": "https://via.placeholder.com/300x200",
+    "category": "Sports",
+    "date": "2025-08-04T10:00:00Z"
+  }
+]

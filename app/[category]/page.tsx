@@ -2,16 +2,42 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import articles from '../../../content/articles.json';
+import type { NextPage } from 'next';
 import Link from 'next/link';
 
-interface CategoryPageProps {
-  params: { category: string };
+interface Article {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  category: string;
+  date: string;
 }
 
-const CategoryPage = ({ params }: CategoryPageProps) => {
+const CategoryPage: NextPage<{ params: { category: string } }> = ({ params }) => {
   const router = useRouter();
   const { category } = params;
+
+  // Handle potential missing data
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await import('../../../content/articles.json');
+        setArticles(response.default || response);
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to load articles');
+        setLoading(false);
+        console.error('Error loading articles:', err);
+      }
+    };
+
+    fetchArticles();
+  }, []);
 
   // Decode category and ensure it matches your categories
   const validCategories = ['news', 'breaking-news', 'sports', 'entertainment', 'tech', 'opinions', 'gossip'];
@@ -39,6 +65,31 @@ const CategoryPage = ({ params }: CategoryPageProps) => {
   const filteredPosts = articles
     .filter(post => post.category.toLowerCase().replace(' ', '-') === decodedCategory)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="text-center">
+          <i className="fas fa-exclamation-triangle text-4xl text-red-600 mb-4"></i>
+          <p className="text-xl font-medium">{error}</p>
+          <button 
+            onClick={() => window.location.reload()}
+            className="mt-4 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="font-sans min-h-screen bg-gray-50 w-full max-w-none">
@@ -70,6 +121,7 @@ const CategoryPage = ({ params }: CategoryPageProps) => {
                       alt={post.title}
                       fill
                       className="object-cover"
+                      priority={filteredPosts.indexOf(post) < 3}
                     />
                     <span className="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded">
                       {post.category}
@@ -108,26 +160,6 @@ const CategoryPage = ({ params }: CategoryPageProps) => {
           )}
         </div>
       </div>
-
-      {/* Newsletter Subscription */}
-      <section className="w-full bg-gray-100 py-12 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Stay Updated</h2>
-          <p className="text-gray-600 mb-6">
-            Subscribe to our newsletter for the latest news and updates delivered to your inbox.
-          </p>
-          <div className="flex max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="flex-grow px-4 py-2 rounded-l-lg border focus:outline-none focus:ring-2 focus:ring-red-500"
-            />
-            <button className="bg-red-600 text-white px-6 py-2 rounded-r-lg hover:bg-red-700 transition">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import articles from '../content/articles.json';
+import articles from '../../../content/articles.json'; // Same path as page.tsx
 
 export default function BreakingNewsTicker() {
   const [currentIndex, setCurrentIndex] = useState(0);
   
-  // Get latest 3 news articles
+  // Get latest 3 news articles (same logic as before)
   const breakingNews = articles
     .filter(post => post.category === 'News' || post.category === 'Breaking News')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())

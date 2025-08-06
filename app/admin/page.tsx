@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import Link from 'next/link';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import cheerio from 'cheerio';
@@ -14,17 +13,14 @@ export default function AdminPanel() {
   const quillRef = useRef(null);
   const editorRef = useRef(null);
 
-  // Categories for dropdown
   const categories = ['Breaking News', 'News', 'Sports', 'Entertainment', 'Tech', 'Opinions'];
 
-  // Load articles
   useEffect(() => {
     fetch('/api/articles')
       .then(res => res.json())
       .then(data => setArticles(data));
   }, []);
 
-  // Initialize Quill editor when editing
   useEffect(() => {
     if (editingPost && editorRef.current && !quillRef.current) {
       quillRef.current = new Quill(editorRef.current, {
@@ -41,7 +37,6 @@ export default function AdminPanel() {
     }
   }, [editingPost]);
 
-  // Handle authentication
   if (status === 'loading') return <div className="container mx-auto px-4 py-8">Loading...</div>;
   if (!session) {
     return (
@@ -58,12 +53,10 @@ export default function AdminPanel() {
     );
   }
 
-  // Handle Edit
   const handleEdit = (post) => {
     setEditingPost({ ...post, date: post.date.split('T')[0] });
   };
 
-  // Handle Save
   const handleSave = async () => {
     if (!editingPost) return;
     const updatedArticles = articles.map(post =>
@@ -79,7 +72,6 @@ export default function AdminPanel() {
     quillRef.current = null;
   };
 
-  // Handle Delete
   const handleDelete = async (id) => {
     if (!confirm('Are you sure you want to delete this post?')) return;
     const updatedArticles = articles.filter(post => post.id !== id);
@@ -103,7 +95,6 @@ export default function AdminPanel() {
         </button>
       </div>
 
-      {/* Post List */}
       <section className="mb-12">
         <h2 className="text-xl font-semibold mb-4">Posts</h2>
         <ul className="space-y-4">
@@ -129,7 +120,6 @@ export default function AdminPanel() {
         </ul>
       </section>
 
-      {/* Edit Form */}
       {editingPost && (
         <section className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-xl font-semibold mb-4">Edit Post</h2>

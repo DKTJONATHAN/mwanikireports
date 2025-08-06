@@ -11,10 +11,7 @@
   "dependencies": {
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.4.5",
-    "next-auth": "^5.0.0-beta.20",
-    "quill": "^2.0.2",
-    "cheerio": "^1.0.0"
+    "next": "15.4.5"
   },
   "devDependencies": {
     "typescript": "^5",

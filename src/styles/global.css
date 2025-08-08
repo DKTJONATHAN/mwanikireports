@@ -1,0 +1,39 @@
+:root {
+  --color-primary: #ff0000;  /* Red */
+  --color-text: #000000;     /* Black */
+  --color-bg: #ffffff;       /* White */
+  --radius: 12px;            /* Rounded corners */
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: sans-serif;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+/* Card styling */
+.card {
+  border: 1px solid #eee;
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card img {
+  border-radius: var(--radius);
+  width: 100%;
+  height: auto;
+}
+
+.tag {
+  background: var(--color-primary);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius);
+  display: inline-block;
+  margin-right: 0.5rem;
+}

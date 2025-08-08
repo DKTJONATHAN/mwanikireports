@@ -1,0 +1,20 @@
+---
+const { post } = Astro.props;
+---
+<article class="card">
+  <img 
+    src={post.data.image} 
+    alt={post.data.title} 
+    width="600" 
+    height="400" 
+    loading="lazy" 
+  />
+  <h2>{post.data.title}</h2>
+  <p>{post.data.description}</p>
+  <div class="tags">
+    {post.data.tags.map(tag => (
+      <span class="tag">{tag}</span>
+    ))}
+  </div>
+  <a href={`/posts/${post.slug}`}>Read more</a>
+</article>

@@ -1,0 +1,28 @@
+---
+import Card from '../components/Card.astro';
+import { SITE, CATEGORIES } from '../config.ts';
+const posts = await Astro.glob('../posts/*.md');
+---
+<html lang="en">
+  <head>
+    <title>{SITE.title}</title>
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <img src="/Jonathan-Mwaniki-logo.png" alt="Logo" width="200" />
+      <h1>{SITE.title}</h1>
+      <nav>
+        {CATEGORIES.map(category => (
+          <a href={`/category/${category.toLowerCase()}`}>{category}</a>
+        ))}
+      </nav>
+    </header>
+
+    <main>
+      {posts.map(post => (
+        <Card post={post} />
+      ))}
+    </main>
+  </body>
+</html>
